@@ -1,0 +1,39 @@
+# Flutter & Dart
+.dart_tool/
+.packages
+.pub/
+build/
+generated_plugin_registrant.dart
+
+# iOS & Xcode
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Generated.xcconfig
+ios/Runner/GeneratedPluginRegistrant.*
+ios/Runner/AppDelegate.swift
+ios/Runner/Runner-Bridging-Header.h
+
+# Android
+android/.gradle/
+android/app/build/
+android/local.properties
+
+# macOS
+macos/Flutter/GeneratedPluginRegistrant.*
+macos/Flutter/ephemeral/
+
+# Linux/Windows
+linux/flutter/ephemeral/
+windows/flutter/ephemeral/
+
+# IntelliJ
+*.iml
+.idea/
+
+# VS Code
+.vscode/
+
+# Misc
+*.log
+.DS_Store
+.env
