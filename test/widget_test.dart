@@ -16,6 +16,6 @@ void main() {
 
     expect(find.text('Özel Doğum Günü Şarkısı'), findsOneWidget);
     expect(find.byType(TextField), findsOneWidget);
-    expect(find.widgetWithText(ElevatedButton, 'Çal'), findsOneWidget);
+    expect(find.text('Şarkıyı Çal'), findsOneWidget);
   });
 }

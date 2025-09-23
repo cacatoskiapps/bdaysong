@@ -112,78 +112,216 @@ class _BirthdaySongPageState extends State<BirthdaySongPage> {
     final theme = Theme.of(context);
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: const Text('HappyBday Song'),
       ),
-      body: SafeArea(
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 500),
-            child: Padding(
-              padding: const EdgeInsets.all(24),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFFFEFF7), Color(0xFFFFD8ED)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: SafeArea(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 520),
               child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 16,
+                ),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      'Özel Doğum Günü Şarkısı',
-                      style: theme.textTheme.headlineMedium
-                          ?.copyWith(fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 16),
-                    Text(
-                      'İsmi yaz, "Çal" tuşuna bas ve o kişiye özel doğum günü şarkısını birlikte seçelim.',
-                      style: theme.textTheme.bodyMedium,
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 32),
-                    TextField(
-                      controller: _nameController,
-                      textInputAction: TextInputAction.done,
-                      decoration: const InputDecoration(
-                        labelText: 'İsim',
-                        border: OutlineInputBorder(),
-                      ),
-                      onSubmitted: (_) => _onPlayPressed(),
-                    ),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: _isSearching ? null : _onPlayPressed,
-                      child: _isSearching
-                          ? const SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : const Text('Çal'),
-                    ),
-                    if (_errorMessage != null) ...[
-                      const SizedBox(height: 16),
-                      Text(
-                        _errorMessage!,
-                        style: theme.textTheme.bodyMedium
-                            ?.copyWith(color: theme.colorScheme.error),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                    if (_playerController != null) ...[
-                      const SizedBox(height: 24),
-                      AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: YoutubePlayer(
-                            key: ValueKey(_playerController!.initialVideoId),
-                            controller: _playerController!,
-                            showVideoProgressIndicator: true,
-                            progressIndicatorColor:
-                                theme.colorScheme.secondary,
-                          ),
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.65),
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(
+                          color: Colors.white.withOpacity(0.4),
                         ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.05),
+                            blurRadius: 24,
+                            offset: const Offset(0, 12),
+                          ),
+                        ],
                       ),
-                    ],
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 28,
+                                backgroundColor: theme.colorScheme.primary
+                                    .withOpacity(.2),
+                                child: Icon(
+                                  Icons.cake_rounded,
+                                  size: 34,
+                                  color: theme.colorScheme.primary,
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Kişiye Özel Şarkı',
+                                      style: theme.textTheme.titleMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                    ),
+                                    Text(
+                                      'Bir isim yaz, doğum günü büyüsünü başlat.',
+                                      style: theme.textTheme.bodyMedium,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 24),
+                          Text(
+                            'Özel Doğum Günü Şarkısı',
+                            style: theme.textTheme.headlineSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'İsmi yaz, "Çal" tuşuna bas ve o kişiye özel doğum günü şarkısını birlikte seçelim.',
+                            style: theme.textTheme.bodyMedium,
+                          ),
+                          const SizedBox(height: 24),
+                          TextField(
+                            controller: _nameController,
+                            textInputAction: TextInputAction.done,
+                            decoration: InputDecoration(
+                              labelText: 'Kimin için çalalım?',
+                              prefixIcon: Icon(
+                                Icons.music_note_rounded,
+                                color: theme.colorScheme.primary,
+                              ),
+                            ),
+                            onSubmitted: (_) => _onPlayPressed(),
+                          ),
+                          const SizedBox(height: 16),
+                          FilledButton.icon(
+                            onPressed: _isSearching ? null : _onPlayPressed,
+                            icon:
+                                _isSearching
+                                    ? const SizedBox(
+                                      width: 20,
+                                      height: 20,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        valueColor: AlwaysStoppedAnimation(
+                                          Colors.white,
+                                        ),
+                                      ),
+                                    )
+                                    : const Icon(Icons.play_arrow_rounded),
+                            label: Text(
+                              _isSearching ? 'Aranıyor...' : 'Şarkıyı Çal',
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 250),
+                            child:
+                                _errorMessage == null
+                                    ? const SizedBox.shrink()
+                                    : Container(
+                                      key: const ValueKey('error'),
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        color: theme.colorScheme.errorContainer,
+                                        borderRadius: BorderRadius.circular(16),
+                                      ),
+                                      child: Text(
+                                        _errorMessage!,
+                                        style: theme.textTheme.bodyMedium
+                                            ?.copyWith(
+                                              color:
+                                                  theme
+                                                      .colorScheme
+                                                      .onErrorContainer,
+                                            ),
+                                      ),
+                                    ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 400),
+                      switchInCurve: Curves.easeOutCubic,
+                      switchOutCurve: Curves.easeInCubic,
+                      child:
+                          _playerController == null
+                              ? Container(
+                                key: const ValueKey('placeholder'),
+                                padding: const EdgeInsets.all(24),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.55),
+                                  borderRadius: BorderRadius.circular(24),
+                                  border: Border.all(
+                                    color: Colors.white.withOpacity(0.4),
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.play_circle_fill_rounded,
+                                      size: 64,
+                                      color: theme.colorScheme.primary
+                                          .withOpacity(0.7),
+                                    ),
+                                    const SizedBox(height: 12),
+                                    Text(
+                                      'Şarkı burada belirecek',
+                                      style: theme.textTheme.titleMedium
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      'Doğum günü kutlamasına hazır olun! 🎉',
+                                      style: theme.textTheme.bodySmall,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              )
+                              : AspectRatio(
+                                key: ValueKey(
+                                  _playerController!.initialVideoId,
+                                ),
+                                aspectRatio: 16 / 9,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(24),
+                                  child: YoutubePlayer(
+                                    controller: _playerController!,
+                                    showVideoProgressIndicator: true,
+                                    progressIndicatorColor:
+                                        theme.colorScheme.primary,
+                                  ),
+                                ),
+                              ),
+                    ),
+                    const SizedBox(height: 48),
                   ],
                 ),
               ),

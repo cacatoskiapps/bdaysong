@@ -16,7 +16,8 @@ class YoutubeApiException implements Exception {
 }
 
 class YoutubeBirthdayService {
-  YoutubeBirthdayService({http.Client? client}) : _client = client ?? http.Client();
+  YoutubeBirthdayService({http.Client? client})
+    : _client = client ?? http.Client();
 
   final http.Client _client;
 
