@@ -37,3 +37,4 @@ windows/flutter/ephemeral/
 *.log
 .DS_Store
 .env
+play_store_assets/

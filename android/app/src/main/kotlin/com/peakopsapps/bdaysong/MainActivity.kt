@@ -1,4 +1,4 @@
-package com.example.happybday_song_app
+package com.peakopsapps.bdaysong
 
 import io.flutter.embedding.android.FlutterActivity
 
