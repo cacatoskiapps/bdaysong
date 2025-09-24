@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HappyBday Song</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f47192",
+              "background-light": "#f8f6f6",
+              "background-dark": "#221015",
+            },
+            fontFamily: {
+              "display": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex flex-col h-screen">
+<main class="flex-grow flex flex-col justify-center">
+<div class="px-6 py-8">
+<div class="bg-white/50 dark:bg-black/30 backdrop-blur-xl p-8 rounded-xl shadow-lg text-center">
+<h1 class="text-3xl font-bold text-background-dark dark:text-background-light mb-2">HappyBday Song</h1>
+<p class="text-background-dark/80 dark:text-background-light/80 mb-8">İsme özel doğum günü melodisi saniyeler içinde.</p>
+<ul class="space-y-4 text-left mb-10">
+<li class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">celebration</span>
+<span class="text-background-dark dark:text-background-light">İsim gir, sürpriz şarkıyı bul.</span>
+</li>
+<li class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">play_circle</span>
+<span class="text-background-dark dark:text-background-light">Video uygulama içinde oynar.</span>
+</li>
+<li class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-2xl">share</span>
+<span class="text-background-dark dark:text-background-light">Paylaş, tekrar çal.</span>
+</li>
+</ul>
+</div>
+</div>
+</main>
+<footer class="px-6 pb-8 pt-4">
+<div class="flex items-center justify-center gap-3 mb-6">
+<div class="h-2 w-2 rounded-full bg-primary"></div>
+<div class="h-2 w-2 rounded-full bg-primary/30"></div>
+<div class="h-2 w-2 rounded-full bg-primary/30"></div>
+</div>
+<button class="w-full bg-primary text-background-dark font-bold py-4 px-5 rounded-lg text-lg mb-4 hover:opacity-90 transition-opacity">
+                Kutlamaya Başla
+            </button>
+<button class="w-full text-primary font-bold py-4 px-5 rounded-lg hover:bg-primary/10 transition-colors">
+                Geç
+            </button>
+</footer>
+</div>
+
+</body></html>

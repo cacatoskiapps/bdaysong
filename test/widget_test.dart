@@ -14,7 +14,11 @@ void main() {
   testWidgets('Name input and play button are visible', (tester) async {
     await tester.pumpWidget(const HappyBdaySongApp());
 
-    expect(find.text('Özel Doğum Günü Şarkısı'), findsOneWidget);
+    // Intro akışını geçerek ana ekrana ulaş.
+    await tester.tap(find.text('Geç'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Kimin için çalıyoruz?'), findsOneWidget);
     expect(find.byType(TextField), findsOneWidget);
     expect(find.text('Şarkıyı Çal'), findsOneWidget);
   });
